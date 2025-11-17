@@ -1,0 +1,25 @@
+flowchart TD
+    star[start]
+    inputName[player Name]
+    clas{choise class}
+    
+    knight[knightHP: 60,knightATK: 30, knightDEF: 20, energy: 60]
+    archer[archerHP: 55,archerATK: 45, archerDEF: 10,energy: 60]
+    mage[mageHP: 40,mageATK: 50, mageDEF: 5, mana: 75]
+
+   
+    playerInfo[
+        name:
+        hp:
+        atk:
+        def:
+        energy/mana
+    ]
+    
+
+
+
+    star --- inputName --- 
+    clas --> knight --- playerInfo
+    clas --> archer --- playerInfo
+    clas --> mage --- playerInfo
