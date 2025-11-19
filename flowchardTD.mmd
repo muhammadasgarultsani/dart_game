@@ -1,25 +1,76 @@
 flowchart TD
-    star[start]
-    inputName[player Name]
-    clas{choise class}
-    
-    knight[knightHP: 60,knightATK: 30, knightDEF: 20, energy: 60]
-    archer[archerHP: 55,archerATK: 45, archerDEF: 10,energy: 60]
-    mage[mageHP: 40,mageATK: 50, mageDEF: 5, mana: 75]
+    %% =========================
+    %% START & INPUT SECTION
+    %% =========================
+    A[Start] --> B[Input Player Name]
+    B --> C{Choose Class}
 
-   
-    playerInfo[
-        name:
-        hp:
-        atk:
-        def:
-        energy/mana
-    ]
-    
+    %% =========================
+    %% CLASS DATA NODES
+    %% =========================
+    C -->|Knight| K["
+        Knight Stats
+        HP: 60
+        ATK: 30
+        DEF: 20
+        Energy: 60
+    "]
 
+    C -->|Archer| R["
+        Archer Stats
+        HP: 55
+        ATK: 45
+        DEF: 10
+        Energy: 60
+    "]
 
+    C -->|Mage| M["
+        Mage Stats
+        HP: 40
+        ATK: 50
+        DEF: 5
+        Mana: 75
+    "]
 
-    star --- inputName --- 
-    clas --> knight --- playerInfo
-    clas --> archer --- playerInfo
-    clas --> mage --- playerInfo
+    %% =========================
+    %% BUILD PLAYER OBJECT
+    %% =========================
+    K --> PINFO[Build Player Info Object]
+    R --> PINFO
+    M --> PINFO
+
+    %% =========================
+    %% MAIN GAME INFO SCREEN
+    %% =========================
+    PINFO --> S["
+        Show Player Information
+        Name
+        Class
+        HP, ATK, DEF
+        Energy/Mana
+        Level & EXP
+    "]
+
+    S --> D{Add EXP?}
+
+    %% =========================
+    %% EXP & LEVEL UP SYSTEM
+    %% =========================
+    D -->|Yes| ADDXP[Player EXP += Input Value]
+    D -->|No| MENU[Return To Menu]
+
+    ADDXP --> LV{Level Up?}
+    LV -->|Yes| LUP[Increase Level & Reset EXP]
+    LV -->|No| S
+
+    LUP --> S
+
+    %% =========================
+    %% MENU OPTIONS
+    %% =========================
+    MENU --> CH{Choose Action}
+
+    CH -->|Show Stats| S
+    CH -->|Add EXP| ADDXP
+    CH -->|Change Class| C
+    CH -->|Exit| END[End Program]
