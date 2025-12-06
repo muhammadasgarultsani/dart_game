@@ -19,7 +19,7 @@ class Knight {
   print("|| Health  : $mainHealth");
   print("|| Attack  : $mainAtk");
   print("|| Defense : $mainDef");
-  print("|| Energy  : $mainEnergy");
+  print("|| Stanina  : $mainEnergy");
   print("=====================================================");
   }
  
